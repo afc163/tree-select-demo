@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const uglifyJsPlugin = webpack.optimize.UglifyJsPlugin; //复制html文件到生成目录
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const packageName = 'tree-select-demo';
 module.exports = {
@@ -42,13 +42,17 @@ module.exports = {
       minChunks: Infinity,
     }),
     new uglifyJsPlugin({
-      beautify: false,
-      comments: false,
-      compress: {
-        warnings: false,
-        drop_console: true,
-        collapse_vars: true,
-        reduce_vars: true
+      uglifyOptions: {
+        output: {
+          beautify: false,
+          comments: false,
+        },
+        compress: {
+          warnings: false,
+          drop_console: true,
+          collapse_vars: true,
+          reduce_vars: true
+        }
       }
     }),
     new CopyWebpackPlugin([{
