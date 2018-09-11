@@ -6,7 +6,7 @@ const port = 3000;
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    vendor: ['react', 'react-dom', 'react-router-dom', 'antd'],
+    vendor: ['react', 'react-dom', 'antd'],
     bundle: path.join(__dirname, './app/main.jsx')
   },
   output: {
@@ -15,7 +15,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx'], //后缀名自动补全
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [{
@@ -39,9 +39,9 @@ module.exports = {
     ],
   },
   devServer: {
-    compress: false, // 启用gzip压缩
+    compress: false,
     contentBase: path.join(__dirname, 'app'),
-    port: port, // 运行端口3000
+    port: port,
     inline: true,
     hot: true,
     historyApiFallback: true,
